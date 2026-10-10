@@ -1,0 +1,103 @@
+/* ==========================================================================
+   STYLES.CSS — controls how the site LOOKS.
+   This is a minimal starter so we can preview in dark mode.
+   In Step 3 we'll build the real design system together.
+   ========================================================================== */
+
+/* CSS variables: named values we can reuse everywhere.
+   Want a different background color? Change it once, here. */
+:root {
+  --bg: #0e1116 ;
+  --surface: #151a21;
+  --border: #232b36;
+  --text: #e8eaee;
+  --muted: #98a2b0;
+  --accent: #adadad;
+  --accent-hover: #ffffff; /* highlights, links, buttons */
+}
+
+html {
+  scroll-behavior: smooth; /* clicking a nav link glides instead of jumping */
+}
+
+body {
+  margin: 0; /* browsers add a default margin around the page — we don't want it */
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Montserrat", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+p {
+  font-size: 1.05rem;
+  max-width: 65ch;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Temporary layout so the hero preview looks intentional.
+   (Flexbox centers the content — we'll cover it properly in Step 3.) */
+.hero {
+  font-size: 1.25rem;
+  color: var(--muted);
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.section {
+  max-width: 880px;
+  margin: 0 auto;
+  background-color: var(--surface);
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 1px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.button{
+  float: right;
+  padding-right: 10px;
+  width: fit-content;
+}
+.footer {
+width: 100%;
+box-sizing: border-box;
+padding: 16px 0px;
+text-align: right;
+}
+.footer p {
+  max-width: none;
+  margin: 0;
+  padding-right: 20px;
+}
+
+/* Links get our accent color */
+a {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  transition: color 0.1s ease;
+  cursor: pointer;
+}
