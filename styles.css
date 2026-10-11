@@ -16,6 +16,7 @@
   --accent-hover: #ffffff; /* highlights, links, buttons */
 }
 
+
 html {
   scroll-behavior: smooth; /* clicking a nav link glides instead of jumping */
 }
@@ -49,6 +50,15 @@ p {
   margin-left: auto;
 }
 
+.nav-links{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 1.25rem;
+  padding-top: 30px;
+  
+}
+
 /* Temporary layout so the hero preview looks intentional.
    (Flexbox centers the content — we'll cover it properly in Step 3.) */
 .hero {
@@ -71,6 +81,7 @@ p {
   padding: 10px;
   padding-top: 1px;
   text-align: center;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 .button{
@@ -78,6 +89,49 @@ p {
   padding-right: 10px;
   width: fit-content;
 }
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+
+  width: fit-content;
+  max-width: 75%;
+  margin: 0 auto 30px;
+  padding: 10px;
+}
+
+.series-card{
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.series-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1px
+}
+
+.series-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dialog {
+  background: var(--surface);
+  color:var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 32px;
+  max-width: 600px;
+  width: 90%
+}
+
+.dialog::backdrop{
+  background: rgba(0, 0, 0, 0.6)
+}
+
 .footer {
 width: 100%;
 box-sizing: border-box;
@@ -94,6 +148,7 @@ text-align: right;
 a {
   color: var(--accent);
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 a:hover {
