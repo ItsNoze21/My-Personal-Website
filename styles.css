@@ -92,44 +92,112 @@ p {
 
 .series-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  justify-items: center;
+  align-items: start;
   gap: 24px;
 
-  width: fit-content;
-  max-width: 75%;
-  margin: 0 auto 30px;
-  padding: 10px;
+  width: 100%;
+  max-width: 900px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.series-card{
+.series-card {
+  min-width: 0;
+  padding: 8px;
+  box-sizing: border-box;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
   cursor: pointer;
+  transform: translateY(0) scale(1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.series-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 1px
-}
-
 .series-card:hover {
-  transform: translateY(-6px) scale(1.03);
+  transform: translateY(-5px) scale(1.03);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-.dialog {
-  background: var(--surface);
-  color:var(--text);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 32px;
-  max-width: 600px;
-  width: 90%
+.series-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-.dialog::backdrop{
+.series-card h3 {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 8px 0 2px;
+}
+
+.series-dialog{
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  box-sizing: border-box;
+  width: min(700px, calc(100% - 32px));
+  max-width: 700px;
+  max-height: 84vh;
+  overflow-y: auto;
+  margin: auto;
+}
+
+
+
+.series-dialog::backdrop{
   background: rgba(0, 0, 0, 0.6)
+}
+
+.series-dialog-content{
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.series-dialog-content > .series-cover {
+  display: block;
+  flex: 0 0 150px;
+  width: 150px;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.series-dialog-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.series-dialog-info h3 {
+  margin-top: 0;
+  text-align: left;
+}
+
+.series-dialog-info p {
+  text-align: left;
+  margin: 0;
+}
+
+.series-dialog form{
+  margin-top: 20px;
+}
+
+.series-dialog button{
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
 }
 
 .footer {
@@ -155,4 +223,102 @@ a:hover {
   color: var(--accent-hover);
   transition: color 0.1s ease;
   cursor: pointer;
+}
+
+.series-card,
+.book-card {
+  font: inherit;
+  cursor: pointer;
+}
+
+.series-card {
+  width: 100%;
+}
+
+.book-card {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.book-card:focus-visible,
+.series-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.books-selection {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border)
+}
+
+.books-selection > h3 {
+  text-align: left;
+  margin: 0 0 18px;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(120px, 1fr)
+  );
+  gap: 18px;
+}
+
+.book-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.book-card h4 {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 8px 0 2px;
+  overflow-wrap: anywhere;
+}
+
+.book-series-name {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.book-dialog {
+  width: min(700px, calc(100% - 32px));
+}
+
+.book-dialog .series-dialog-content > .series-cover {
+  flex-basis: 150px;
+  width: 150px;
+}
+
+.dialog-actions {
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .book-dialog .series-dialog-content > .series-cover {
+    flex-basis: 100px;
+    width: 100px;
+  }
 }

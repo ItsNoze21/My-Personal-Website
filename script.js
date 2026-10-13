@@ -1,3 +1,4 @@
+
 const library = [
     {
         id: "hunger-games",
@@ -5,57 +6,256 @@ const library = [
         cover: "assets/books/the-hunger-games.jpeg",
         rating: 4,
         review: "Put review here",
-        books: []
-    },
+        books: [
+            {
+                id: "hunger-games-1",
+                title: "The Hunger Games",
+                cover: "assets/books/the-hunger-games.jpeg",
+                status: "Read",
+                rating: 4,
+                review: "Put review here"
+            },
+            {
+                id: "hunger-games-2",
+                title: "Catching Fire",
+                cover: "assets/books/catching-fire.jpeg",
+                status: "Read",
+                rating: 5,
+                review: "Put review here"
+            },
+            {
+                id: "hunger-games-3",
+                title: "Mockingjay",
+                cover: "assets/books/mockingjay.jpeg",
+                status: "Read",
+                rating: 5,
+                review: "Put review here"
+            }
+        ]
+    }
 ];
+
+function escapeHTML(value = "") {
+    return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    }[character]));
+}
 
 function seriesCard(series) {
     return `
-        <div class="series-card" data-show="dialog-${series.id}">
-        <img src="${series.cover}" alt="${series.title} book cover" />
-        <h3>${series.title}</h3>
-        </div>
+        <button
+            class="series-card"
+            type="button"
+            data-show-series="${escapeHTML(series.id)}"
+        >
+            <img
+                class="series-cover"
+                src="${escapeHTML(series.cover)}"
+                alt="${escapeHTML(series.title)} book cover"
+            />
+            <h3>${escapeHTML(series.title)}</h3>
+        </button>
     `;
 }
 
 function seriesDialog(series) {
     return `
-        <dialog class="series-dialog" id="dialog-${series.id}">
-            <img src="${series.cover}" alt="${series.title} book cover" />
-            <h3>${series.title}</h3>
-            <p>${series.review}</p>
-            <form method="dialog"><button>← All series</button></form>
+        <dialog class="series-dialog" id="dialog-${escapeHTML(series.id)}">
+            <div class="series-dialog-content">
+                <img
+                    class="series-cover"
+                    src="${escapeHTML(series.cover)}"
+                    alt="${escapeHTML(series.title)} book cover"
+                />
+
+                <div class="series-dialog-info">
+                    <h3>${escapeHTML(series.title)}</h3>
+
+                    <p>${escapeHTML(series.review || "No review added yet.")}</p>
+
+                    <p>
+                        ${series.rating == null
+                            ? "No rating"
+                            : `Series Rating: ${escapeHTML(series.rating)}/5`
+                        }
+                    </p>
+                </div>
+            </div>
+
+            <section class="books-section">
+                <h3>Books in this series</h3>
+
+                <div class="books-grid">
+                    ${series.books.map(book => `
+                        <button
+                            class="book-card"
+                            type="button"
+                            data-show-book="${escapeHTML(book.id)}"
+                            data-series-id="${escapeHTML(series.id)}"
+                        >
+                            <img
+                                class="book-cover"
+                                src="${escapeHTML(book.cover)}"
+                                alt="${escapeHTML(book.title)} book cover"
+                            />
+                            <h4>${escapeHTML(book.title)}</h4>
+                        </button>
+                    `).join("")}
+                </div>
+            </section>
+
+            <form method="dialog">
+                <button type="submit">&lt; All series</button>
+            </form>
         </dialog>
-    `
+    `;
+}
+
+function bookDialog(series, book) {
+    return `
+        <dialog
+            class="series-dialog book-dialog"
+            id="book-${escapeHTML(book.id)}"
+        >
+            <div class="series-dialog-content">
+                <img
+                    class="series-cover"
+                    src="${escapeHTML(book.cover)}"
+                    alt="${escapeHTML(book.title)} book cover"
+                />
+
+                <div class="series-dialog-info">
+                    <p class="book-series-name">
+                        ${escapeHTML(series.title)}
+                    </p>
+
+                    <h3>${escapeHTML(book.title)}</h3>
+
+                    <p>
+                        ${book.rating == null
+                            ? "Not rated"
+                            : `Rating: ${escapeHTML(book.rating)}/5`
+                        }
+                    </p>
+
+                    <p>${escapeHTML(book.review || "No review added yet.")}</p>
+                </div>
+            </div>
+
+            <form method="dialog" class="dialog-actions">
+                <button type="submit">&lt; Back to series</button>
+            </form>
+        </dialog>
+    `;
+}
+
+function openDialogWithAnimation(dialog, originCard) {
+    dialog.showModal();
+    requestAnimationFrame(() => {
+        const cardBox = originCard.getBoundingClientRect();
+        const dialogBox = dialog.getBoundingClientRect();
+
+        if (!cardBox.width || !cardBox.height || !dialogBox.width || !dialogBox.height) {
+            return;
+        }
+
+        const dx = cardBox.left + cardBox.width / 2 - (dialogBox.left + dialogBox.width / 2);
+        const dy = cardBox.top + cardBox.height / 2 - (dialogBox.top + dialogBox.height / 2);
+        const scale = Math.min(
+            carBox.width / dialogBox.width,
+            cardBox.height / dialogBox.height,
+            1
+        );
+        dialog.animate(
+            [
+                { transform: `translate(${dx}px, ${dy}px) scale(${scale})` ,
+                opacity: 0 },
+                { transform: "none", opacity: 1 }
+            ],
+            {
+                duration: 350,
+                easing: "cubic-bezier(0.4, 0, 0.2, 1)"
+            }
+        )
+    })
 }
 
 const grid = document.getElementById("view-series-list");
-grid.innerHTML = library.map(seriesCard).join("");
-
 const holder = document.getElementById("dialog-holder");
-holder.innerHTML = library.map(seriesDialog).join("");
 
-document.querySelectorAll("[data-show]").forEach((el) => {
-    el.addEventListener("click", (event) => {
-        event.preventDefault();
-        const dialog = document.getElementById(el.dataset.show);
-        dialog.showModal();
+if (!grid || !holder) {
+    console.error(
+        "Required HTML elements not found:",
+        { grid, holder }
+    );
+} else {
+    
+    grid.innerHTML = library.map(seriesCard).join("");
 
-        const card = el.getBoundingClientRect();
-        const box = dialog.getBoundingClientRect();
+   
+    holder.innerHTML = library.map(series => `
+        ${seriesDialog(series)}
+        ${series.books.map(book => bookDialog(series, book)).join("")}
+    `).join("");
 
 
-        const dx = (card.left + card.width / 2) - (box.left + box.width / 2);
-        const dy = (card.top + card.height / 2) - (box.top + box.height / 2);
+grid.addEventListener("click", event => {
+    const card = event.target.closest("[data-show-series]");
+    if (!card) return;
 
-        const scale = card.width / box.width;
+    const dialog = document.getElementById(
+        `dialog-${card.dataset.showSeries}`
+    );
 
-        dialog.animate(
-            [
-                {transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 0},
-                {transform: "translate(0px, 0px) scale(1)", opacity: 1},
-            ],
-            {duration: 300, easing: "ease-out"}
+    if (dialog) {
+        openDialogWithAnimation(dialog, card);
+    } else {
+        console.error(
+            "Series dialog not found:",
+            card.dataset.showSeries
         );
-    });
+    }
 });
+
+    // Open an individual book dialog.
+    // Open an individual book dialog with an expanding animation.
+holder.addEventListener("click", event => {
+    const card = event.target.closest("[data-show-book]");
+    if (!card) return;
+
+    const dialog = document.getElementById(
+        `book-${card.dataset.showBook}`
+    );
+
+    if (dialog) {
+        openDialogWithAnimation(dialog, card);
+    } else {
+        console.error(
+            "Book dialog not found:",
+            card.dataset.showBook
+        );
+    }
+});
+
+    // Close a dialog when clicking its backdrop.
+    holder.addEventListener("click", event => {
+        if (!(event.target instanceof HTMLDialogElement)) return;
+
+        const dialog = event.target;
+        const rect = dialog.getBoundingClientRect();
+
+        const insideDialog =
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom;
+
+        if (!insideDialog) {
+            dialog.close();
+        }
+    });
+}
