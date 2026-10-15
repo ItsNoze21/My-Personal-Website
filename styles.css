@@ -84,6 +84,11 @@ p {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
+.book-section {
+    max-width: 75%;
+}
+
 .button{
   float: right;
   padding-right: 10px;
@@ -92,7 +97,7 @@ p {
 
 .series-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   justify-items: center;
   align-items: start;
   gap: 24px;
@@ -310,6 +315,35 @@ a:hover {
 
 .dialog-actions {
   margin-top: 20px;
+}
+
+/* spoiler system */
+.spoiler {
+  background-color: var(--border);
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.spoiler:not(:active) {
+  background-color: var(--muted);
+  color: var(--muted);
+  min-width: max-content;
+  user-select: none;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.spoiler:not(:active)::before {
+  position: absolute;
+  content: 'Click\a0to\a0show\a0spoiler';
+  color: var(--text);
+  white-space: nowrap;
+  border-radius: 4px
+}
+
+.spoiler:not(:active) {
+  min-width: 195px;
 }
 
 @media (max-width: 480px) {

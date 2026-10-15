@@ -5,7 +5,7 @@ const library = [
         title: "The Hunger Games",
         cover: "assets/books/the-hunger-games.jpeg",
         rating: 4,
-        review: "Put review here",
+        review: "The Hunger Games is one of my favorite book series. It has excellent worldbuilding and well thought out characters. Definitely a great choice for anyone who likes dystopian novels.",
         books: [
             {
                 id: "hunger-games-1",
@@ -13,7 +13,7 @@ const library = [
                 cover: "assets/books/the-hunger-games.jpeg",
                 status: "Read",
                 rating: 4,
-                review: "Put review here"
+                review: "The Hunger Games is an excellent dystopian novel. Its great writing and first person point-of-view really help immerse the reader into the story."
             },
             {
                 id: "hunger-games-2",
@@ -21,7 +21,7 @@ const library = [
                 cover: "assets/books/catching-fire.jpeg",
                 status: "Read",
                 rating: 5,
-                review: "Put review here"
+                review: "Catching Fire is an great sequel to the already amazing original. It builds upon the original story without feeling extra.[[spoiler: test spoiler.]]  "
             },
             {
                 id: "hunger-games-3",
@@ -43,6 +43,18 @@ function escapeHTML(value = "") {
         '"': "&quot;",
         "'": "&#39;"
     }[character]));
+}
+
+function formatReview(review = "") {
+    return escapeHTML(review).replace(
+        /\[\[spoiler: (.*?)\]\]/g,
+        (_, spoiler) => `
+            <span class="spoiler" role="button" tabindex="0"
+                  aria-expanded="false">
+                <span class="spoiler-text">${spoiler}</span>
+            </span>
+        `
+    );
 }
 
 function seriesCard(series) {
@@ -75,7 +87,7 @@ function seriesDialog(series) {
                 <div class="series-dialog-info">
                     <h3>${escapeHTML(series.title)}</h3>
 
-                    <p>${escapeHTML(series.review || "No review added yet.")}</p>
+                    <p>${formatReview(series.review || "No review added yet.")}</p>
 
                     <p>
                         ${series.rating == null
@@ -142,7 +154,7 @@ function bookDialog(series, book) {
                         }
                     </p>
 
-                    <p>${escapeHTML(book.review || "No review added yet.")}</p>
+                    <p>${formatReview(book.review || "No review added yet.")}</p>
                 </div>
             </div>
 
@@ -166,7 +178,7 @@ function openDialogWithAnimation(dialog, originCard) {
         const dx = cardBox.left + cardBox.width / 2 - (dialogBox.left + dialogBox.width / 2);
         const dy = cardBox.top + cardBox.height / 2 - (dialogBox.top + dialogBox.height / 2);
         const scale = Math.min(
-            carBox.width / dialogBox.width,
+            cardBox.width / dialogBox.width,
             cardBox.height / dialogBox.height,
             1
         );
@@ -192,6 +204,9 @@ if (!grid || !holder) {
         "Required HTML elements not found:",
         { grid, holder }
     );
+
+    
+
 } else {
     
     grid.innerHTML = library.map(seriesCard).join("");
@@ -259,3 +274,24 @@ holder.addEventListener("click", event => {
         }
     });
 }
+
+document.addEventListener("click", event => {
+        const spoiler = event.target.closest(".spoiler");
+        if (!spoiler) return;
+
+        spoiler.classList.toggle("revealed");
+
+        spoiler.setAttribute(
+            "aria-expanded",
+            spoiler.classList.contains("revealed")
+        );
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.target.matches(".spoiler") &&
+        (event.key === "Enter" || event.key === " ")
+    ) {
+        event.preventDefault();
+        event.target.click();
+    }
+});
