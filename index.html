@@ -1,85 +1,66 @@
-<!DOCTYPE html> <!-- Tells the browser "this is modern HTML" -->
-<html lang="en" data-theme="dark"> <!-- data-theme: our CSS will read this to know which colors to use -->
+  <!DOCTYPE html>
+  <html lang="en" data-theme="dark">
 
-<head>
-  <!-- HEAD = information ABOUT the page (nothing in here is visible on the page itself) -->
-  <meta charset="UTF-8" /> <!-- allows special characters like é, —, emoji -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- makes the site behave on phones -->
-  <title>Nivedhkrishna — Portfolio</title> <!-- shows in the browser tab and in Google results -->
-  <meta name="description" content="Portfolio of Nivedhkrishna: coding projects, 3D design, and writing." />
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nivedhkrishna — Portfolio</title>
+    <meta name="description" content="Portfolio of Nivedhkrishna: coding projects, 3D design, and writing." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" /> <!-- attaches our stylesheet -->
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
-  <!-- BODY = everything visible on the page -->
+  <body>
+    <header class="nav">
 
-  <!-- ================= NAV ================= -->
-  <header class="nav">
-    <!-- TODO(you): change "NK" to whatever you want as your logo (initials work great) -->
-    <!-- <a class="logo" href="#top">NK</a> -->
-
-    <nav class="nav-links">
-      <a href="index.html">Me</a>
-      <a href="books.html">Books</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- Placeholder button — does nothing until we wire it up in Step 6 -->
-    <button class="button"id="theme-toggle" aria-label="Switch between dark and light mode">◐</button>
-  </header>
-
-  <main id="top">
-    <!-- ================= HERO ================= -->
-    <!-- YOUR FIRST TASK: write your hero content inside this section.
-         Instructions are in our chat. -->
-    <section class="hero" id="hero">
-      <h1>Nivedhkrishna Thoduvakkal</h1>
-        <p>Hi, I'm Nivedh, an aspiring coder, 3d artist, and game developer.</p>
-        
-        <a href="https://linktr.ee/nivedhthoduvakkal" target="_blank">My Linktree</a>
+      <nav class="nav-links">
+        <a class="current-page" href="index.html">Me</a>
+        <a href="books.html">Books</a>
+        <a href="timeline.html">My Timeline</a>
+      </nav>
 
 
-    </section>
+      <button class="button"id="theme-toggle" aria-label="Switch between dark and light mode">◐</button>
+    </header>
 
-    <!-- ================= ABOUT ================= -->
-      <section class="section" id="about">
-      <h2>About Me</h2>
-       <!-- TODO(you, later): replace this placeholder with your real bio -->
-        <p>
-        Hi! I'm Nivedh, I'm a student in the ninth grade who loves to read,
-        and is trying to learn how to code! This website is a place where I'll be able to showcase all the things I'm proud of,
-         and the things I'm working on. Right now, I'm trying to make my first real projects for Hackclub Terra, and this is the first one!
-      </p>
-     </section>
-
-    <!-- ================= WORK ================= -->
-    <section class="section" id="work">
-      <h2>Work</h2>
-      <!-- TODO(step 4): filter buttons + project cards go here -->
-      <p>Coming soon — coding projects, 3D art, and writing will live here (hopefully)</p>
-    </section>
-
-    <!-- ================= CONTACT ================= -->
-    <section class="section" id="contact">
-      <h2>Contact</h2>
-      <p>Want to get in touch? <a href="mailto:nivedhthoduvakkal@gmail.com">Email Me</a></p>
-    </section>
-
-  </main>
+    <main id="top">
+      <section class="hero" id="hero">
+        <h1>Nivedhkrishna Thoduvakkal</h1>
+          <p>Hi, I'm Nivedh, an aspiring computer scientist, 3d artist, and game developer.</p>
+          
+          <a href="https://linktr.ee/nivedhthoduvakkal" target="_blank">My Linktree</a>
 
 
+      </section>
 
+        <section class="section" id="about">
+        <h2>About Me</h2>
+          <p>
+          I'm Nivedh, a student in the ninth grade who loves to read,
+          and is trying to learn how to code. This website is a place where I'll be able to showcase all the things I'm proud of,
+          and the things I'm working on. Right now, I'm trying to make my first real projects for Hackclub Terra, and this is the first one!
+        </p>
+      </section>
 
+      <section class="section" id="work">
+        <h2>Work</h2>
+        <p>Coming soon, coding projects, 3D art, and writing will live here (hopefully)</p>
+      </section>
 
-  <!-- ================= FOOTER ================= -->
-     <footer class="footer">
-       <p>© 2026 Nivedhkrishna</p>
-     </footer>
-       <script src="script.js"></script>
-  </body>
-</html>
+      <section class="section" id="contact">
+        <h2>Contact</h2>
+        <p>Want to get in touch? <a href="mailto:nivedhthoduvakkal@gmail.com">Email Me</a></p>
+      </section>
+
+    </main>
+
+      <footer class="footer">
+        <p>© 2026 Nivedhkrishna</p>
+      </footer>
+        <script src="script.js"></script>
+    </body>
+  </html>

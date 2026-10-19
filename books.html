@@ -1,44 +1,38 @@
-<!DOCTYPE html> <!-- Tells the browser "this is modern HTML" -->
-<html lang="en" data-theme="dark"> <!-- data-theme: our CSS will read this to know which colors to use -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"> 
 
 <head>
-  <!-- HEAD = information ABOUT the page (nothing in here is visible on the page itself) -->
-  <meta charset="UTF-8" /> <!-- allows special characters like é, —, emoji -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- makes the site behave on phones -->
-  <title>Books - Nivedhkrishna</title> <!-- shows in the browser tab and in Google results -->
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Books - Nivedhkrishna</title> 
   <meta name="description" content="Portfolio of Nivedhkrishna: coding projects, 3D design, and writing." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" /> <!-- attaches our stylesheet -->
+  <link rel="stylesheet" href="styles.css" /> 
 </head>
 
 
 
 <body>
-  <!-- BODY = everything visible on the page -->
 
-  <!-- ================= NAV ================= -->
   <header class="nav">
-    <!-- TODO(you): change "NK" to whatever you want as your logo (initials work great) -->
-    <!-- <a class="logo" href="#top">NK</a> -->
 
     <nav class="nav-links">
       <a href="index.html" class="nav-link">Me</a>
-      <a href="books.html" class="nav-link">Books</a>
-      <a href="index.html#contact" class="nav-link">Contact</a>
+      <a class="current-page" href="books.html" class="nav-link">Books</a>
+      <a href="timeline.html">My Timeline</a>
     </nav>
 
-    <!-- Placeholder button — does nothing until we wire it up in Step 6 -->
     <button class="button"id="theme-toggle" aria-label="Switch between dark and light mode">◐</button>
   </header>
 
   <main id="top">
         <section class="section" id="page-title">
           <h2>Books I've Read</h2>
-            <p>Click a series to see my review - and every book inside it. (no spoilers!)</p>
+            <p>Click a series to see my review - and every book inside it. (spoilers are hidden)</p>
         </section>
         <section class="book-section" id="books">
           <div class="series-grid" id="view-series-list"></div>
@@ -46,15 +40,9 @@
         <div id="dialog-holder"></div>
   </main>
 
-
-
-  
-
-  <!-- ================= FOOTER ================= -->
      <footer class="footer">
-       <!-- TODO: update the year & name each year (or we automate it in Step 6 😉) -->
        <p>© 2026 Nivedhkrishna</p>
      </footer>
-     <script src="script.js"></script> <!-- attaches our JavaScript -->
+     <script src="script.js"></script>
   </body>
 </html>

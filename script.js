@@ -2,6 +2,7 @@
 const library = [
     {
         id: "hunger-games",
+        type: "series",
         title: "The Hunger Games",
         cover: "assets/books/the-hunger-games.jpeg",
         rating: 4,
@@ -20,8 +21,8 @@ const library = [
                 title: "Catching Fire",
                 cover: "assets/books/catching-fire.jpeg",
                 status: "Read",
-                rating: 5,
-                review: "Catching Fire is an great sequel to the already amazing original. It builds upon the original story without feeling extra.[[spoiler: test spoiler.]]  "
+                rating: 4.5,
+                review: "Catching Fire is an great sequel to the already amazing original. It builds upon the original story without feeling extra.[[spoiler: the book was sad, yet incredibly engaging.]]"
             },
             {
                 id: "hunger-games-3",
@@ -29,9 +30,20 @@ const library = [
                 cover: "assets/books/mockingjay.jpeg",
                 status: "Read",
                 rating: 5,
-                review: "Put review here"
+                review: "Mockingjay was a perfect ending to the series. It mixed sadness with new beginnings, and masterfully harnesses your emotions to draw you in."
             }
         ]
+    },
+        {
+        id: "1984",
+        type: "standalone",
+        title: "1984",
+        cover: "assets/books/1984.jpg",
+        rating: "TBD",
+        review: "Currently Reading",
+        books: [
+
+        ],
     }
 ];
 
@@ -92,37 +104,32 @@ function seriesDialog(series) {
                     <p>
                         ${series.rating == null
                             ? "No rating"
-                            : `Series Rating: ${escapeHTML(series.rating)}/5`
+                            : `${series.type === "series" ? "Series Rating" : "Rating"}: ${escapeHTML(series.rating)}/5`
                         }
                     </p>
                 </div>
             </div>
+    ${series.type === "series" ? `
+    <section class="books-section">
+        <h3>Books in this series</h3>
 
-            <section class="books-section">
-                <h3>Books in this series</h3>
+        <div class="books-grid">
+            ${(series.books || []).map(book => `
+                <button
+                    class="book-card"
+                    type="button"
+                    data-show-book="${escapeHTML(book.id)}"
+                    data-series-id="${escapeHTML(series.id)}">
 
-                <div class="books-grid">
-                    ${series.books.map(book => `
-                        <button
-                            class="book-card"
-                            type="button"
-                            data-show-book="${escapeHTML(book.id)}"
-                            data-series-id="${escapeHTML(series.id)}"
-                        >
-                            <img
-                                class="book-cover"
-                                src="${escapeHTML(book.cover)}"
-                                alt="${escapeHTML(book.title)} book cover"
-                            />
-                            <h4>${escapeHTML(book.title)}</h4>
-                        </button>
-                    `).join("")}
-                </div>
-            </section>
-
-            <form method="dialog">
-                <button type="submit">&lt; All series</button>
-            </form>
+                    <img class="book-cover"
+                        src="${escapeHTML(book.cover)}"
+                        alt="${escapeHTML(book.title)} book cover"/>
+                                <h4>${escapeHTML(book.title)}</h4>
+                            </button>
+                        `).join("")}
+                    </div>
+                </section>
+            ` : ""}
         </dialog>
     `;
 }
@@ -157,10 +164,6 @@ function bookDialog(series, book) {
                     <p>${formatReview(book.review || "No review added yet.")}</p>
                 </div>
             </div>
-
-            <form method="dialog" class="dialog-actions">
-                <button type="submit">&lt; Back to series</button>
-            </form>
         </dialog>
     `;
 }
@@ -213,8 +216,10 @@ if (!grid || !holder) {
 
    
     holder.innerHTML = library.map(series => `
-        ${seriesDialog(series)}
-        ${series.books.map(book => bookDialog(series, book)).join("")}
+    ${seriesDialog(series)}
+    ${(series.books || []).map(book =>
+        bookDialog(series, book)
+    ).join("")}
     `).join("");
 
 
