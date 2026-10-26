@@ -1,42 +1,89 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Timeline</title>
-  <meta name="description" content="This page features major events in my life." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <title>My Timeline</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="nav">
+            <nav class="nav-links">
+                <a href="index.html">Me</a>
+                <a href="books.html">Books</a>
+                <a class="current-page" href="timeline.html">My Timeline</a>
+            </nav>
+            <button class="button" id="theme-toggle">◐</button>
+        </header>
+        <main id="top" class="timeline-page">
+            <section class="timeline-intro">
+                <p class="timeline-eyebrow">My Journey</p>
+                <h1>My Timeline</h1>
+                <p>
+                    A collection of the projects I've built, experiences I've had, and milestones that have shaped my
+                    journey.
+                </p>
+            </section>
+            <section class="timeline-section">
+                <ol class="timeline">
+                    <li class="timeline-item">
+                        <time class="timeline-date" date-time="2026-05-07">May 7, 2026</time>
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
+                        <article class="timeline-card">
+                            <div class="timeline-card-meta">
+                                <span class="timeline-category"> Hardware Project </span>
+                                <span class="timeline-status">Completed</span>
+                            </div>
+                            <h2>World Robotic Olymiad Provincials</h2>
+                            <p>
+                                I participated in the WRO Provincials, designing and creating the ARS Atlas, a artifact recovery robot, along with two of my friends. I designed and created the soft compliant-mechanism soft grabber for the robot.
+                            </p>
+                        </article>
+                    </li>
+                    <li class="timeline-item">
+                        <time class="timeline-date" datetime="2026-10-12"> October 12, 2026 </time>
 
-<body>
-  <header class="nav">
+                        <article class="timeline-card">
+                            <div class="timeline-card-meta">
+                                <span class="timeline-category">Web Development</span>
 
-    <nav class="nav-links">
-      <a href="index.html">Me</a>
-      <a href="books.html">Books</a>
-      <a class="current-page" href="timeline.html">My Timeline</a>
-    </nav>
-
-
-    <button class="button"id="theme-toggle" aria-label="Switch between dark and light mode">◐</button>
-  </header>
-
-  <main id="top">
-      <section class="section" id="about">
-      <h2>My Timeline</h2>
-      <p>Hi! This page is a work in progress, check back on it in a bit.</p>
-      </section>
-  </main>
-
-     <footer class="footer">
-       <p>© 2026 Nivedhkrishna</p>
-     </footer>
-       <script src="script.js"></script>
-  </body>
+                                <span class="timeline-status">In Progress</span>
+                            </div>
+                            <h2>Personal Portfolio website</h2>
+                            <p>
+                                Worked on this website to showcase my coding projects, 3D design, writing, reading, and
+                                the things I'm learning along the way.
+                            </p>
+                        </article>
+                    </li>
+                    <li class="timeline-item">
+                        <time class="timeline-date" datetime="2026-10-21"> October 21, 2026 </time>
+                        <article class="timeline-card">
+                            <div class="timeline-card-meta">
+                                <span class="timeline-category">Web Development</span>
+                                <span class="timeline-status">In Progress</span>
+                            </div>
+                            <h2>Flexi-Time</h2>
+                            <p>
+                                Started building a flexible daily scheduling app. It lets users create activities, set
+                                daily time goals, and track their progress with countdown timers.
+                            </p>
+                        </article>
+                    </li>
+                </ol>
+            </section>
+        </main>
+        <footer class="footer">
+            <p>© 2026 Nivedhkrishna</p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
 </html>

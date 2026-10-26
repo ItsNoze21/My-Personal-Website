@@ -358,3 +358,133 @@ a:hover {
     width: 100px;
   }
 }
+
+.timeline-page {
+  width: min(850px, calc(100% = 64px));
+  margin: 44px 0 72px 32px;
+  padding-right: 32px;
+}
+
+.timeline-intro {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.timeline-eyebrow {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  margin: 0 0 8px;
+}
+
+.timeline-intro h1 {
+  text-align: left;
+  margin: 0;
+}
+
+.timeline-intro > p:last-child {
+  color: var(--muted);
+  text-align: left;
+  margin: 14px 0 0;
+}
+
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 34px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
+  z-index: 1;
+
+}
+.timeline-date {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.timeline-card {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.timeline-card:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.timeline-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.timeline-category,
+.timeline-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+.timeline-category {
+  color: var(--muted);
+}
+
+.timeline-status {
+  color: var(--text);
+  background: var(--border);
+}
+
+.timeline-card h2 {
+  text-align: left;
+  font-size: 1.35rem;
+  margin: 12px 0 8px;
+}
+
+.timeline-card p {
+  color: var(--muted);
+  text-align: left;
+  margin: 0;
+  max-width: none;
+}
+
